@@ -1,12 +1,11 @@
 # The cBB package
-An R package to implement the methodology described in *Modeling Bounded Count Environmental Data Using a Contaminated
-Beta-Binomial Regression Model* (2025).
+An R package to implement the methodology described in *Modeling Bounded Count Environmental Data Using a Contaminated Beta-Binomial Regression Model* (2025).
 
 To install the package, use the following code in R
 ```{r}
 #install.packages("devtools")
 library(devtools)
-install_github("arnootto/cBB-RM")
+install_github("arnootto/cBB")
 ```
 ## Example
 Code to reproduce Example 5.1: Mule Deer Mortality

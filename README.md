@@ -14,6 +14,11 @@ Code to reproduce Example 5.1: Number of visits to a doctor in a year
 library(cBB)
 data("MuleDeer")
 
-bb <- ml.mbb(formula = cbind(Winter_malnutrition_n, Radiocollared_fawns - Winter_malnutrition_n) ~ 1, data=as.data.frame(df), reltol = 1e-10, hessian=T)
-cBB <- ml.cmbb(formula = cbind(Winter_malnutrition_n, Radiocollared_fawns - Winter_malnutrition_n) ~ 1, data=as.data.frame(df), reltol = 1e-10, method = "BFGS")
+#intercept only cBB-RM
+mbb <- ml.mbb(formula = cbind(Winter_malnutrition_n, Radiocollared_fawns - Winter_malnutrition_n) ~ 1, data=MuleDeer, reltol = 1e-10, method="Nelder-Mead")
+cmbb<- ml.cmbb(formula = cbind(Winter_malnutrition_n, Radiocollared_fawns - Winter_malnutrition_n) ~ 1, data=MuleDeer, reltol = 1e-10, method = "Nelder-Mead")
+
+#state as covariate
+mbb <- ml.mbb(formula = cbind(Winter_malnutrition_n, Radiocollared_fawns - Winter_malnutrition_n) ~ State, data=MuleDeer, reltol = 1e-10, method = "BFGS")
+cmbb <- ml.cmbb(formula = cbind(Winter_malnutrition_n, Radiocollared_fawns - Winter_malnutrition_n) ~ State, data=MuleDeer, reltol = 1e-10, method = "BFGS")
 ```

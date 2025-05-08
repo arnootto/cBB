@@ -9,7 +9,7 @@ library(devtools)
 install_github("arnootto/cBB-RM")
 ```
 ## Example
-Code to reproduce Example 5.1: Number of visits to a doctor in a year
+Code to reproduce Example 5.1: Mule Deer Mortality
 ```{r}
 library(cBB)
 data("MuleDeer")

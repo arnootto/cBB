@@ -13,7 +13,7 @@
 #' @param reltol Relative convergence tolerance in optimization. Defaults to 1e-15.
 #' @param maxit The maximum number of iterations in optimization. Defaults to 10000.
 #' @param hessian Logical; if TRUE, computes the Hessian matrix for standard errors. Default is TRUE.
-#' @param EM Logical; if TRUE, uses EM algorithm for estimation. Default is TRUE.
+#' @param EM Logical; if TRUE, the EM algorithm is used for maximum likelihood estimation. Default is TRUE.
 #'
 #'
 #' @details The \code{ml.cmbb} function fits a contaminated beta-binomial regression model using maximum likelihood estimation.
@@ -36,7 +36,7 @@
 #'    \item{loglike}{The log-likelihood value at convergence.}
 #'    \item{AIC}{Akaike Information Criterion (AIC) for the fitted model.}
 #'    \item{BIC}{Bayesian Information Criterion (BIC) for the fitted model.}
-#'    \item{HIC}{Hannan-Quinn Information Criterion (HIC) for the fitted model.}
+#'    \item{HQIC}{Hannan-Quinn Information Criterion (HQIC) for the fitted model.}
 #'
 #' @import VGAM
 #' @import stats
@@ -205,5 +205,5 @@ ml.cmbb <- function (formula, sigma.formula = ~1, delta.formula = ~1, eta.formul
               gamma = gamma.hat, lambda = lambda.hat, mu = mu.hat,
               sigma = sigma.hat, delta = delta.hat, eta = eta.hat,
               X = X, U = U, V = V, Z = Z, y = y, loglike = loglik,
-              AIC = AIC, BIC = BIC, HIC = HIC, EM=EM))
+              AIC = AIC, BIC = BIC, HQIC = HIC, EM=EM))
 }

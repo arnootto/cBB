@@ -10,15 +10,16 @@ ml.cmbb(
   delta.formula = ~1,
   eta.formula = ~1,
   data,
-  start = NULL,
+  init = NULL,
   method = "BFGS",
   reltol = 1e-15,
-  maxit = 1000,
-  hessian = T
+  maxit = 10000,
+  hessian = TRUE,
+  EM = TRUE
 )
 }
 \arguments{
-\item{formula}{An object of class 'formula': a symbolic description of the model for the mean parameter (mu).}
+\item{formula}{An object of class 'formula': a symbolic description of the model for the binomial probability of success parameter (pi).}
 
 \item{sigma.formula}{A formula for the dispersion parameter (sigma). Defaults to ~1.}
 
@@ -28,22 +29,24 @@ ml.cmbb(
 
 \item{data}{A mandatory data frame containing the variables in the model.}
 
-\item{start}{Vector of initial values. If NULL, values are initialized using ml.mbb and with delta = 0.01 and eta = 1.1.}
+\item{init}{Vector of initial values. If NULL, values are initialized using ml.mbb and with delta = 0.01 and eta = 1.1.}
 
 \item{method}{Optimization method to be used. Default is "BFGS". Other options are "Nelder-Mead".}
 
 \item{reltol}{Relative convergence tolerance in optimization. Defaults to 1e-15.}
 
-\item{maxit}{The maximum number of iterations in optimization. Defaults to 1000.}
+\item{maxit}{The maximum number of iterations in optimization. Defaults to 10000.}
 
 \item{hessian}{Logical; if TRUE, computes the Hessian matrix for standard errors. Default is TRUE.}
+
+\item{EM}{Logical; if TRUE, the EM algorithm is used for maximum likelihood estimation. Default is TRUE.}
 
 \item{verbose}{Logical; if TRUE, prints progress information. Default is FALSE.}
 }
 \value{
 A list of elements:
    \item{results}{A data frame with parameter estimates, standard errors, t-values, and p-values (if hessian = TRUE).}
-   \item{beta}{Maximum likelihood estimates of the regression coefficients for mu.}
+   \item{beta}{Maximum likelihood estimates of the regression coefficients for pi}
    \item{alpha}{Maximum likelihood estimates of the regression coefficients for sigma.}
    \item{gamma}{Maximum likelihood estimates of the regression coefficients for delta.}
    \item{lambda}{Maximum likelihood estimates of the regression coefficients for eta.}
@@ -51,7 +54,7 @@ A list of elements:
    \item{sigma}{Fitted values of the dispersion parameter.}
    \item{delta}{Fitted values of the contamination proportion.}
    \item{eta}{Fitted values of the inflation parameter.}
-   \item{X}{The design matrix for mu.}
+   \item{X}{The design matrix for pi.}
    \item{U}{The design matrix for sigma.}
    \item{V}{The design matrix for delta.}
    \item{Z}{The design matrix for eta.}
@@ -59,11 +62,11 @@ A list of elements:
    \item{loglike}{The log-likelihood value at convergence.}
    \item{AIC}{Akaike Information Criterion (AIC) for the fitted model.}
    \item{BIC}{Bayesian Information Criterion (BIC) for the fitted model.}
-   \item{HIC}{Hannan-Quinn Information Criterion (HIC) for the fitted model.}
+   \item{HQIC}{Hannan-Quinn Information Criterion (HQIC) for the fitted model.}
 }
 \description{
 Maximum likelihood estimation of the contaminated mean-parameterized beta-binomial regression model via direct optimization.
 }
 \details{
-The \code{ml.cmbb} function fits a contaminated beta-binomial regression model
+The \code{ml.cmbb} function fits a contaminated beta-binomial regression model using maximum likelihood estimation.
 }
